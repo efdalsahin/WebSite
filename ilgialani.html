@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Muhammet Efdal ŞAHİN | İlgi Alanı</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="Stiller/ilgialani.css">
+</head>
+
+<body>
+    <div id="sayfacizgi"></div>
+    <div id="sayfacizgi2"></div>
+
+    <div id="icerik">
+
+        <div class="header">
+
+
+            <ul class="nav nav-pills nav-justified">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Hakkımda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="egitim.html"> Eğitim Bilgileri</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sehrim.html">Şehrim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mirasim.html">Mirasım</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">İlgi Alanlarım</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="iletisim.html">İletişim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="girisyap.html">Giris Yap</a>
+                </li>
+
+
+            </ul>
+            <br><br><br>
+
+        </div>
+
+
+
+        <input id="form" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" id="myBtn" onclick="search()">Search</button>
+        <br><br>
+        <hr>
+
+        <div>
+            <div class="row" id="container">
+                <div class="col-md-4" id="animefoto"></div>
+                <div class="col-md-8" id="animeaciklama">
+                    <div id="animeadi"></div>
+                    <div id="animebolum"></div>
+                    <div id="animescore"></div>
+                    <div id="animeder"></div>
+                    <div id="animebas"></div>
+                    <div id="animebit"></div>
+                    <div id="animeaciklama"></div>
+                </div>
+            </div>
+
+
+        </div>
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div>
+                    <span class="close">&times;</span>
+                </div>
+                <div>
+                    <p>Giridiğiniz anime bulunmamaktadır.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" id="listeler"></div>
+
+
+
+    </div>
+
+
+    <div id="footer">
+        Copyright by <font color="red">ALAGEYIK</font> | 2021 <br>
+        <a href="https://github.com/efdalsahin/web-teknoloji-proje" target="_blank">Bu site Git-Hub üzerinde açık
+            kaynaklı olarak bulunmaktadir.</a>
+
+
+
+
+
+    </div>
+
+    <script>
+        async function setImage(anime) {
+            var api = "https://api.jikan.moe/v4/anime?q=" + anime + "&page=1";
+            const res = await fetch(api);
+            const data = await res.json();
+            //console.log(data);
+            var veri = data.data[0];
+
+            document.getElementById("animefoto").innerHTML = "<img src=" + veri.images.jpg.image_url + ">";
+
+            document.getElementById("animeadi").innerHTML = "<p> Anime adi : " + veri.title + "</p>";
+
+            document.getElementById("animebolum").innerHTML = "<p> Bolum sayisi : " + veri.episodes + "</p>";
+
+            document.getElementById("animescore").innerHTML = "<p> Score : " + veri.score + "</p>";
+
+            document.getElementById("animeder").innerHTML = "<p> Derecelendirme : " + veri.rating + "</p>";
+
+            document.getElementById("animebas").innerHTML = "<p> Baslama tarihi : " + veri.aired.from + "</p>";
+
+            document.getElementById("animebit").innerHTML = "<p> Bitis tarihi : " + veri.aired.to + "</p>";
+
+            return data;
+
+        }
+
+        function addElement(data) {
+            let parentDiv = document.getElementById("listeler");
+
+
+            let div_elem = document.createElement("div")
+            div_elem.setAttribute("class", "col-xl-2 col-lg-3 col-md-4 col-sm-6");
+            div_elem.setAttribute("id", "ust");
+
+            div_elem.innerHTML = `
+                <div id="ana" >
+                    <div>
+                        <img src="${data.images.jpg.image_url}" alt="">
+                    </div>
+
+                    <div>
+                        <p style="font-weight: bold;">${data.title}</p>
+                    </div>
+                </div>`
+            parentDiv.appendChild(div_elem)
+
+
+        }
+
+
+
+
+
+        async function search() {
+
+
+
+            var formdata = document.getElementById("form").value;
+            //console.log(formdata)
+            let liste = [];
+
+            try {
+                liste = await setImage(formdata);
+            } catch {
+                openModal()
+                console.log("Err");
+            }
+
+            let silinecek = document.getElementById("ust")
+
+            if (silinecek) {
+                while (silinecek) {
+                    silinecek.remove();
+                    console.log("ehe")
+                    silinecek = document.getElementById("ust")
+                }
+
+            }
+
+            for (let i = 1; i < liste.data.length; i++) {
+                addElement(liste.data[i])
+
+            }
+        }
+
+        function openModal() {
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+
+            modal.style.display = "flex";
+            modal.style.alignItems = "center";
+            modal.style.justifyItems = "center"
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            };
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+
+        var input = document.getElementById("form");
+
+        // Execute a function when the user presses a key on the keyboard
+        input.addEventListener("keypress", function (event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                document.getElementById("myBtn").click();
+            }
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
