@@ -41,7 +41,7 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">İletişim</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="girisyap.html">Giris Yap</a>
+                    <a class="nav-link" href="girisyap.php">Giris Yap</a>
                 </li>
 
 
@@ -54,7 +54,7 @@
 
 
 
-            <form action="deneme.php" method="GET">
+            <form action="info.php" method="GET">
                 <div class="row">
                     <div class="row">
                         <div class="col-md-6">
@@ -140,11 +140,11 @@
 
                     <div class="col-md-4 ">
                         <label class="my-1 mr-2" for="egitimduzey">Eğitim Düzeyi</label><br>
-                        <select class="custom-select my-1 mr-sm-2" id="egitimduzey">
+                        <select class="custom-select my-1 mr-sm-2" id="egitimduzey" name="egitimduzey">
                             <option selected>Seciniz..</option>
-                            <option value="1">Ortaokul</option>
-                            <option value="2">Lise</option>
-                            <option value="3">Üniversite ve üstü</option>
+                            <option value="Ortaokul">Ortaokul</option>
+                            <option value="Lise">Lise</option>
+                            <option value="Üniversite veya üstü">Üniversite ve üstü</option>
                         </select>
 
                     </div>
@@ -152,7 +152,8 @@
 
                     <div class="col-md-12">
                         <label for="adres1">Adres</label>
-                        <input type="text" class="form-control" id="adres1" placeholder="Agalar Mah. Merkez Sk. No=1">
+                        <input type="text" class="form-control" id="adres1" name="adres1"
+                            placeholder="Agalar Mah. Merkez Sk. No=1">
                     </div>
                     <div class="col-md-12">
                         <label for="adres2">Açık Adres</label>

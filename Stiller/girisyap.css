@@ -5,7 +5,6 @@ body {
 #icerik {
     margin-left: 18%;
     margin-right: 18%;
-    background-color: skyblue;
 }
 
 #sayfacizgi {
@@ -46,4 +45,16 @@ body {
     height: 85px;
     width: 100%;
     background-color: darkgray;
+}
+
+.bilgi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#girilen {
+    font-size: xx-large;
+    font-weight: bold;
 }

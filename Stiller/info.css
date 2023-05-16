@@ -1,0 +1,29 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #dc2361;
+}
+
+.bilgiler {
+    display: flex;
+    flex-direction: column;
+    border: dotted 5px;
+    border-radius: 10px;
+    background-color: #e9727c;
+    padding: 10px;
+    width: 30vw;
+}
+.alt {
+    padding: 10px;
+    font-weight: bald;
+    font-size: large;
+    background-color: #d33de1;
+    margin: 5px;
+}
