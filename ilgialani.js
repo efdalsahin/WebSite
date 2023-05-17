@@ -70,10 +70,12 @@ async function search() {
             silinecek = document.getElementById("ust");
         }
     }
-
-    for (let i = 1; i < liste.data.length; i++) {
+    liste.data.map((element) => {
+        addElement(element);
+    });
+    /*for (let i = 1; i < liste.data.length; i++) {
         addElement(liste.data[i]);
-    }
+    }*/
 }
 
 function openModal() {
