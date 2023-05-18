@@ -1,5 +1,6 @@
 body {
     background-color: ghostwhite;
+    margin-bottom: 85px;
 }
 
 #icerik {
@@ -21,6 +22,8 @@ body {
 }
 
 #footer {
+    position: fixed;
+    bottom: 0;
     text-align: center;
     margin: 10px;
     margin-bottom: 0px;

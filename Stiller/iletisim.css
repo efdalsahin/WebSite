@@ -28,7 +28,10 @@ body {
 }
 
 #footer {
+    position: fixed;
+    bottom: 0;
     text-align: center;
+    justify-content: end;
     margin: 10px;
     margin-bottom: 0px;
     padding: 20px;
