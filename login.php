@@ -26,6 +26,7 @@ if ($_POST['ehehe'] === $correctUsername && $_POST['password'] === $correctPassw
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="2;url=girisyap.php" />
     <title>Login Başarısız</title>
     <link rel="stylesheet" href="Stiller/girisyap.css">
   </head>
@@ -45,7 +46,7 @@ if ($_POST['ehehe'] === $correctUsername && $_POST['password'] === $correctPassw
     
 
     
-    header( "Refresh:2; url=girisyap.php", true, 303);
+    //header( "Refresh:2; url=girisyap.php", true, 303);
 }
     ?>
 
